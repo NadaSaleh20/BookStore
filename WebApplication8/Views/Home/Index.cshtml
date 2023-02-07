@@ -1,0 +1,49 @@
+﻿@using WebApplication6.Repositry
+@using Microsoft.Extensions.Configuration
+@inject WebApplication6.Repositry.Ibookrepo _bookrepo;
+@inject Ibookrepo _bookrepo;
+@inject IConfiguration _Configuration;
+
+@{
+    ViewData["Title"] = "HomePage";
+}
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1>Welcome to Bookstore</h1>
+        <p class="lead text-muted">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      
+    </div>
+</section>
+
+<h2>@_Configuration["AuthorName"]</h2>
+<ul class="list-group">
+    @foreach (var item in await _bookrepo.getALLbook())
+    {
+        <li class="list-group-item">@item.title</li>
+    }
+</ul>
+<br>
+<br>
+
+
+
+<div class="py-5 bg-light">
+    <div class="container">
+
+        <h3 class="h3"> TopBook</h3>
+        <div class="row">
+            @foreach (var item in await _bookrepo.getTopbook())
+            {
+
+                <div class="col-md-4">
+                    <partial name="_booksantax" model="item" />
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

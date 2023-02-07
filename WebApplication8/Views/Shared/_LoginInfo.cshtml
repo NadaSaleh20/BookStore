@@ -1,0 +1,54 @@
+﻿
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<Users> _signInManager;
+
+
+
+@if (_signInManager.IsSignedIn(User))
+{
+
+
+<li class="nav-item dropdown">
+
+    <a class="nav-link dropdown-toggle text-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        @*@User.Identity.Name*@  @*get the email*@
+        @(User.FindFirst("CliamFirstName").Value + "" +User.FindFirst("CliamLastName").Value)
+
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" style="color:blue" asp-controller="Account" asp-action="Logout">Logout</a>
+        <a class="dropdown-item" style="color:blue" asp-controller="Account" asp-action="ChangPassword">Change Password</a>
+    </div>
+
+
+</li>
+}
+
+
+else
+{
+    <li class="nav-item">
+        <a class="btn btn-outline-primary" asp-controller="Account" asp-action="Login"
+           asp-route-returnURl="@Context.Request.Path">Login</a>
+        <a class="btn btn-primary" asp-controller="Account" asp-action="SignUp">Rejester</a>
+    </li>
+
+}
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

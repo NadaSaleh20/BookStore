@@ -1,0 +1,21 @@
+﻿
+@model IEnumerable<bookModel>
+@{ViewData["Title"] = "books Page";
+}
+
+<div class="py-5 bg-light">
+    <div class="container">
+
+        <h3 class="h3"> All book found</h3>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-md-4">
+                    <partial name="_booksantax" model="item" />
+                </div>
+
+            }
+        </div>
+    </div>
+    </div>

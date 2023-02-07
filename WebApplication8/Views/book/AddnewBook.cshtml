@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "Add book";
+}
+@model bookModel
+
+<div class="container">
+    <h2 class="display-4"> Add Books: </h2>
+
+    @if (@ViewBag.isadded == true)
+    {
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>success!</strong> book Added successfuly :) see book information
+            <a asp-controller="book" asp-action="getidbook" asp-route-id="@ViewBag.bookid">here</a>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+    }
+   @*loader*@
+   @*<div class="spinner-border text-success" id="myloader" role="status" style="display:none">
+    <span class="sr-only"  >Loading...</span>
+   </div>*@
+<form method="post" asp-controller="book" asp-action="AddnewBook" enctype=multipart/form-data>
+
+    <label asp-for="title"></label>
+    <input asp-for="title" class="form-control" />
+    <span asp-validation-for="title" class="text-danger"></span>
+
+    <br>
+
+
+    <label asp-for="authorName"></label>
+    <input asp-for="authorName" class="form-control" />
+    <span asp-validation-for="authorName" class="text-danger"></span>
+    <br>
+
+    <div class="form-group">
+        <label asp-for="coverbook"></label>
+        <div class="custom-file">
+            <input asp-for="coverbook" class="custom-file-input" id="inputGroupFile03">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+        <span asp-validation-for="coverbook" class="text-danger"></span>
+    </div>
+
+    <br>
+    <div class="form-group">
+        <label asp-for="bookpdf"></label>
+        <div class="custom-file">
+            <input asp-for="bookpdf" class="custom-file-input" id="inputGroupFile03">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+        <span asp-validation-for="bookpdf" class="text-danger"></span>
+    </div>
+
+    <br>
+    <div class="form-group">
+        <input type="submit" value="Add Book" class="btn btn-primary" />
+    </div>
+
+
+</form>
+</div>
+
+@*@section Scripts{ 
+
+<script>
+    function Completefunction() {
+        alert("hello from complete");
+    }
+    function failerMethod() {
+        alert("failed to added ");
+    }
+</script>
+}*@
+
+
